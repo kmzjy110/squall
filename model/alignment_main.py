@@ -1,6 +1,6 @@
 import torch
 from alignment_dataset import AlignmentDataset
-from torch.utils.data import DataLoader
+
 import tqdm
 from alignment_model import AlignmentModel
 
@@ -51,7 +51,7 @@ def train(model, num_epochs, batch_size, model_file,
                 optimizer.step()
                 scheduler.step()
                 batch_iterator.set_postfix(mean_loss=total_loss / i)
-            validation_metric = model.get_validation_metric(dataset=valid_dataset)
+            validation_metric = model.get_validation_metric(train_dataset=train_dataset, valid_dataset=valid_dataset, epoch_num=epoch)
             batch_iterator.set_postfix(
                 mean_loss=total_loss / i,
                 validation_metric=validation_metric)

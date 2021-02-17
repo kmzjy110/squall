@@ -1,6 +1,7 @@
 import torch
 import json
-from utils import parse_number
+from model.utils import parse_number
+#from utils import parse_number
 from torch.utils.data import Dataset
 
 def load_dataset(filename):
@@ -35,7 +36,9 @@ class AlignmentDataset(Dataset):
             sql_words = sql_statement.split(" ")
             raw_item['sql'] = sql_words
             for align in raw_item['align']:
-                current_data_item = {'nl':raw_item['nl'], 'sql':raw_item['sql'],'nl_indices':align[0],'sql_indices':align[1]}
+                #current_data_item = {'nl':raw_item['nl'], 'sql':raw_item['sql'],'nl_indices':align[0],'sql_indices':align[1]}
+                current_data_item = {'nl': raw_item['nl'], 'sql': raw_item['nl'], 'nl_indices': align[0],
+                                     'sql_indices': align[0]}
                 self.data.append(current_data_item)
 
 
